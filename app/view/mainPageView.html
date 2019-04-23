@@ -1,0 +1,38 @@
+<h1>Rabobank</h1>
+<div class="alert alert-danger" ng-show="notCSVfile">
+    <strong>Danger!</strong> Please select CSV file only!
+</div>
+<label>Please select file here</label>
+<div class="row">
+    <div class="col-md-6">
+        <input type="file" file-reader="fileContent" heading-name="headingContent" not-csvfile="notCSVfile"/>
+    </div>
+</div>
+<br>
+<div class="row" ng-show="fileContent.length > 0 && !notCSVfile">
+    <div class="col-md-6">
+        <label>Search: <input ng-model="searchText.issueCount"></label>
+    </div>
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>{{headingContent.heading1}}</th>
+                        <th>{{headingContent.heading2}}</th>
+                        <th>{{headingContent.heading3}}</th>
+                        <th>{{headingContent.heading4}}</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="m in fileContent | filter:searchText">
+                    <tr>
+                        <td>{{m.firstName}}</td>
+                        <td>{{m.surName}}</td>
+                        <td>{{m.issueCount}}</td>
+                        <td>{{m.dateofBirth}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
